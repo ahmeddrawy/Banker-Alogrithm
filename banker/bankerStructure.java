@@ -1,6 +1,8 @@
 package banker;
 
 import java.util.Scanner;
+import java.util.Vector;
+
 /*
 
 5 3
@@ -75,6 +77,7 @@ public class bankerStructure {
         boolean[] finished = new boolean[n];
         int []tmpavailable = available;
         boolean yes=  false;
+        Vector<Integer> seq = new Vector<>();
         while(!yes){
              yes = true ;
             for (int i = 0 ; i < n ; i++){
@@ -86,7 +89,8 @@ public class bankerStructure {
 
                     }
                     if(can) {
-                        finished[i] = yes;
+                        finished[i] = can;
+                        seq.add(i+1);
                         for (int j = 0 ; j < m ;++j){
                             tmpavailable[j] +=allocation[i][j];
 
@@ -100,6 +104,13 @@ public class bankerStructure {
         for(int i = 0 ; i < n ; ++i){
            yes&=finished[i];
         }
+        if(yes){
+            for (int i :seq) {
+                System.out.print(i +" ");
+            }
+            System.out.println("");
+        }
+
         return yes;
     }
 
